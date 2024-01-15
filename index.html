@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <!-- <meta charset="UTF-8"> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JS Toaster 🍞</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/12fc3d9863.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="buttons">
-        <button onclick="showToast()">Success</button>
-        <button onclick="showToast()">Error</button>
-        <button onclick="showToast()">Invalid</button>
+        <button onclick="showToast(successMsg)">Success</button>
+        <button onclick="showToast(errorMsg)">Error</button>
+        <button onclick="showToast(invalidMsg)">Invalid</button>
 
     </div>
 
@@ -22,12 +23,24 @@
 
 
         let toastBox = document.getElementById('toastBox');
+        let successMsg = '<i class="fa-solid fa-circle-check"></i> Successfully submitted';
+        let errorMsg = '<i class="fa-solid fa-circle-xmark"></i> Error in submitting !';
+        let invalidMsg = '<i class="fa-solid fa-circle-exclamation"></i> Invalid input';
 
-        function showToast(){
+
+
+        function showToast(msg){
             let toast = document.createElement('div');
             toast.classList.add('toast');
-            toast.innerText = "Success";
+            toast.innerHTML = msg;
             toastBox.appendChild(toast);
+
+             if(msg.includes('Error')){
+                toast.classList.add('error');
+            }
+            if (msg.includes('Invalid')){
+                toast.classList.add('invalid');
+            }
 
         }
     </script>
